@@ -10,6 +10,7 @@ $codex-ink: #2a1810;
   -webkit-backdrop-filter: blur(8px);
 }
 
+
 html {
   font-size: 17px;
   min-height: 100%;
@@ -33,7 +34,6 @@ body {
   color: var(--primary);
 }
 
-// Минималистичная шапка: плоская, лёгкое «стекло», без тяжёлой каймы
 .d-header {
   box-shadow: none;
   border-bottom: 1px solid rgba(42, 24, 16, 0.1);
@@ -153,7 +153,6 @@ body {
   }
 }
 
-// Минималистичное меню списков: без «таблеток», только текст и линия активного пункта
 .navigation-container {
   .select-kit.combo-box .select-kit-header {
     border-radius: 4px;
@@ -229,11 +228,166 @@ body {
   }
 }
 
-.menu-panel,
 .modal-inner-container {
   @include parchment-panel;
   border: 1px solid rgba(42, 24, 16, 0.1);
   box-shadow: 0 8px 32px rgba(42, 24, 16, 0.08);
+}
+
+// Затемнение за панелью «три полоски» — тёплый сепия, не холодный серый
+.header-cloak {
+  background-color: rgba(26, 15, 8, 0.45) !important;
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
+}
+
+// Боковое меню гамбургера: как страница кодекса (кайма, пергамент, миниатюра)
+.hamburger-panel .menu-panel,
+.menu-panel.slide-in {
+  padding: 0.65rem 0.5rem 0.85rem;
+  border: none;
+  border-radius: 0;
+  box-shadow:
+    inset 0 0 0 1px rgba(74, 52, 28, 0.35),
+    inset 0 0 0 4px rgba(253, 248, 238, 0.92),
+    inset 0 0 0 6px rgba(201, 162, 39, 0.5),
+    6px 0 28px rgba(42, 24, 16, 0.22);
+  background-color: rgba(253, 248, 238, 0.94);
+  background-image:
+    linear-gradient(
+      165deg,
+      rgba(255, 252, 245, 0.92) 0%,
+      rgba(245, 234, 215, 0.88) 45%,
+      rgba(238, 224, 200, 0.9) 100%
+    ),
+    url($manuscript_miniature);
+  background-repeat: no-repeat, no-repeat;
+  background-size: cover, cover;
+  background-position: center top, center top;
+
+  .panel-body-contents {
+    padding-top: 0.25rem;
+  }
+
+  // Ссылки и строки боковой колонки
+  .widget-link,
+  .search-link,
+  .categories-link {
+    font-family: "Crimson Pro", Georgia, serif;
+    font-size: 1rem;
+    border-radius: 2px;
+    padding: 0.4em 0.55em;
+
+    &:hover,
+    &:focus {
+      background-color: rgba(139, 90, 43, 0.1);
+      box-shadow: inset 3px 0 0 0 var(--tertiary);
+    }
+
+    .d-icon {
+      color: rgba(30, 74, 110, 0.75);
+    }
+  }
+
+  .sidebar-section-wrapper {
+    margin-bottom: 0.35rem;
+  }
+
+  .sidebar-section-header-wrapper {
+    margin-bottom: 0.35rem;
+    padding-bottom: 0.35rem;
+    border-bottom: 1px solid rgba(201, 162, 39, 0.4);
+  }
+
+  .sidebar-section-header {
+    font-family: "Cinzel", serif;
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: rgba(42, 24, 16, 0.55);
+  }
+
+  .sidebar-section-link {
+    font-family: "Crimson Pro", Georgia, serif;
+    border-radius: 2px;
+
+    &:hover,
+    &:focus {
+      background: rgba(201, 162, 39, 0.12) !important;
+      box-shadow: inset 3px 0 0 0 var(--tertiary);
+    }
+
+    &.active {
+      font-weight: 600;
+      background: rgba(30, 74, 110, 0.08) !important;
+      box-shadow: inset 3px 0 0 0 var(--tertiary);
+    }
+  }
+
+  .sidebar-section-link-content {
+    font-family: "Crimson Pro", Georgia, serif;
+  }
+
+  .sidebar-section-header-link {
+    font-family: "Cinzel", serif;
+    font-size: 0.75rem;
+    letter-spacing: 0.06em;
+  }
+
+  .sidebar-footer-wrapper {
+    border-top: 1px solid rgba(201, 162, 39, 0.35);
+    padding-top: 0.75rem;
+    margin-top: 0.5rem;
+
+    .sidebar-footer-container {
+      background: transparent;
+      border: none;
+    }
+  }
+
+  hr {
+    border: none;
+    border-top: 1px solid rgba(201, 162, 39, 0.35);
+    margin: 0.5em 0;
+  }
+
+  .badge-notification {
+    font-family: "Crimson Pro", Georgia, serif;
+  }
+}
+
+// Выпадающее меню гамбургера на широком экране (не на весь экран)
+.hamburger-panel .menu-panel.drop-down {
+  padding: 0.5rem;
+  border-radius: 2px;
+  box-shadow:
+    inset 0 0 0 1px rgba(74, 52, 28, 0.3),
+    inset 0 0 0 3px rgba(253, 248, 238, 0.95),
+    inset 0 0 0 5px rgba(201, 162, 39, 0.45),
+    0 12px 36px rgba(42, 24, 16, 0.18);
+  background-color: rgba(253, 248, 238, 0.96);
+  background-image:
+    linear-gradient(
+      rgba(255, 252, 245, 0.94),
+      rgba(240, 228, 208, 0.92)
+    ),
+    url($manuscript_miniature);
+  background-size: auto, cover;
+  background-position: center, center top;
+
+  .widget-link,
+  .search-link,
+  .categories-link {
+    font-family: "Crimson Pro", Georgia, serif;
+  }
+}
+
+// Прочие выпадающие панели (поиск и т.д.) — лёгкий пергамент без тяжёлой каймы
+.menu-panel:not(.slide-in) {
+  @include parchment-panel;
+  border: 1px solid rgba(42, 24, 16, 0.1);
+  box-shadow: 0 8px 28px rgba(42, 24, 16, 0.1);
 }
 
 mark,
@@ -253,3 +407,4 @@ mark,
     font-size: 1.75em;
   }
 }
+
