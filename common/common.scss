@@ -234,14 +234,12 @@ body {
   box-shadow: 0 8px 32px rgba(42, 24, 16, 0.08);
 }
 
-// Затемнение за панелью «три полоски» — тёплый сепия, не холодный серый
 .header-cloak {
   background-color: rgba(26, 15, 8, 0.45) !important;
   backdrop-filter: blur(3px);
   -webkit-backdrop-filter: blur(3px);
 }
 
-// Боковое меню гамбургера: как страница кодекса (кайма, пергамент, миниатюра)
 .hamburger-panel .menu-panel,
 .menu-panel.slide-in {
   padding: 0.65rem 0.5rem 0.85rem;
@@ -383,7 +381,6 @@ body {
   }
 }
 
-// Прочие выпадающие панели (поиск и т.д.) — лёгкий пергамент без тяжёлой каймы
 .menu-panel:not(.slide-in) {
   @include parchment-panel;
   border: 1px solid rgba(42, 24, 16, 0.1);
