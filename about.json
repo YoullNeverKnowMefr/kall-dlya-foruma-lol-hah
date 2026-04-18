@@ -7,16 +7,16 @@
   },
   "color_schemes": {
     "Codex": {
-      "primary": "2a1810",
-      "secondary": "f2e4c8",
-      "tertiary": "1e4a6e",
-      "quaternary": "6b3e2e",
-      "header_background": "1a0f08",
-      "header_primary": "e8d5b5",
-      "highlight": "d4c4a8",
-      "danger": "8b1a1a",
-      "success": "3d5c2e",
-      "love": "9a3412"
+      "primary": "1a0f08",
+      "secondary": "c9b59a",
+      "tertiary": "142c3d",
+      "quaternary": "4a2e24",
+      "header_background": "0d0704",
+      "header_primary": "c4b5a0",
+      "highlight": "a89472",
+      "danger": "6f1414",
+      "success": "2a4020",
+      "love": "6b240e"
     }
   }
 }
