@@ -1,0 +1,239 @@
+// Codex — тема в духе средневекового манускрипта (Discourse)
+// Шрифты: заголовки — Cinzel; текст — Crimson Pro; акценты — Uncial Antiqua
+
+@import url("https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Crimson+Pro:ital,wght@0,400;0,600;1,400&family=Uncial+Antiqua&display=swap");
+
+$codex-gold: #c9a227;
+$codex-gold-dim: rgba(201, 162, 39, 0.35);
+$codex-ink: #2a1810;
+
+@mixin parchment-bg {
+  background-color: var(--secondary);
+  background-image:
+    linear-gradient(
+      90deg,
+      rgba(139, 90, 43, 0.04) 0%,
+      transparent 8%,
+      transparent 92%,
+      rgba(139, 90, 43, 0.04) 100%
+    ),
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      rgba(74, 52, 28, 0.03) 2px,
+      rgba(74, 52, 28, 0.03) 3px
+    ),
+    radial-gradient(
+      ellipse 120% 80% at 50% 0%,
+      rgba(255, 248, 230, 0.9) 0%,
+      var(--secondary) 55%
+    );
+}
+
+html {
+  font-size: 17px;
+}
+
+body {
+  @include parchment-bg;
+  font-family: "Crimson Pro", "Times New Roman", Times, serif;
+  color: var(--primary);
+}
+
+// Шапка — «кожаный» корешок с золотой каймой
+.d-header {
+  box-shadow: none;
+  border-bottom: 3px double $codex-gold;
+  background: linear-gradient(180deg, #2a1810 0%, var(--header_background) 45%, #120a06 100%);
+  min-height: 3.75em;
+
+  .title,
+  .title a,
+  .extra-info {
+    font-family: "Cinzel", serif;
+    letter-spacing: 0.04em;
+  }
+
+  .d-icon {
+    color: var(--header_primary);
+  }
+
+  .menu-panel .d-icon {
+    color: var(--primary);
+  }
+}
+
+#main-outlet {
+  padding-top: 1.25em;
+  max-width: 1110px;
+}
+
+// Карточки списка тем — рамка как у миниатюры
+.topic-list {
+  .topic-list-item {
+    border: 1px solid $codex-gold-dim;
+    border-radius: 2px;
+    margin-bottom: 6px;
+    background: rgba(255, 252, 245, 0.45);
+    box-shadow: inset 0 0 0 1px rgba(42, 24, 16, 0.06);
+
+    &:hover {
+      background: rgba(255, 250, 235, 0.75);
+      border-color: rgba($codex-gold, 0.55);
+    }
+  }
+
+  .main-link .title {
+    font-family: "Cinzel", serif;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+  }
+}
+
+// Заголовок темы — инициал как «литера»
+.title-wrapper .fancy-title,
+#topic-title h1 a {
+  font-family: "Cinzel", serif;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  line-height: 1.25;
+}
+
+.title-wrapper .fancy-title:not(.category-title)::first-letter,
+#topic-title h1 a::first-letter {
+  font-family: "Uncial Antiqua", cursive;
+  font-size: 2.15em;
+  float: left;
+  line-height: 0.82;
+  margin: 0.06em 0.12em 0 0;
+  color: var(--danger);
+  text-shadow: 1px 1px 0 rgba(42, 24, 16, 0.15);
+}
+
+// Тело поста — читаемая густая строка
+.cooked {
+  font-family: "Crimson Pro", Georgia, serif;
+  font-size: 1.05rem;
+  line-height: 1.65;
+
+  p {
+    margin: 0.65em 0;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: "Cinzel", serif;
+    font-weight: 600;
+    color: $codex-ink;
+    border-bottom: 1px solid $codex-gold-dim;
+    padding-bottom: 0.2em;
+  }
+
+  blockquote {
+    border-left: 4px double var(--tertiary);
+    background: rgba(30, 74, 110, 0.06);
+    padding: 0.5em 1em;
+    font-style: italic;
+  }
+
+  a {
+    text-decoration: underline;
+    text-decoration-color: rgba(30, 74, 110, 0.45);
+    text-underline-offset: 2px;
+  }
+
+  code,
+  pre {
+    font-family: ui-monospace, "Cascadia Mono", Consolas, monospace;
+    font-size: 0.92em;
+    background: rgba(42, 24, 16, 0.06);
+    border: 1px solid rgba(42, 24, 16, 0.12);
+  }
+}
+
+// Навигация сверху списка
+.navigation-container {
+  .select-kit.combo-box .select-kit-header {
+    border-radius: 2px;
+    border: 1px solid $codex-gold-dim;
+    background: rgba(255, 252, 245, 0.6);
+  }
+
+  .nav-pills > li > a {
+    font-family: "Cinzel", serif;
+    font-size: 0.88rem;
+    border-radius: 2px;
+
+    &.active {
+      color: var(--tertiary);
+      background: rgba(255, 252, 245, 0.85);
+      border-bottom: 3px solid var(--tertiary);
+    }
+
+    &:hover {
+      color: var(--tertiary);
+      background: rgba(255, 252, 245, 0.55);
+    }
+  }
+}
+
+// Кнопки (исключения по рекомендации Discourse)
+:not(.d-editor-button-bar) > .btn:not(.single-select-header):not(.modal-close),
+.topic-notifications-button > .select-kit > .btn {
+  font-family: "Cinzel", serif;
+  border-radius: 2px;
+  border: 2px solid rgba($codex-gold, 0.65);
+  background: linear-gradient(180deg, rgba(255, 252, 245, 0.95) 0%, rgba(242, 228, 200, 0.9) 100%);
+  color: var(--primary);
+
+  .d-icon {
+    color: var(--primary);
+  }
+
+  &:hover {
+    background: rgba(255, 250, 235, 0.98);
+    border-color: $codex-gold;
+  }
+
+  &.btn-primary {
+    background: linear-gradient(180deg, var(--tertiary) 0%, #163a52 100%);
+    color: var(--secondary);
+    border-color: rgba(30, 74, 110, 0.8);
+
+    .d-icon {
+      color: var(--secondary);
+    }
+
+    &:hover {
+      filter: brightness(1.05);
+    }
+  }
+}
+
+// Панели и модалки — тот же пергамент
+.menu-panel,
+.modal-inner-container {
+  @include parchment-bg;
+  border: 2px solid $codex-gold-dim;
+}
+
+// Подсветка выделения поиска
+mark,
+.highlighted {
+  background: var(--highlight) !important;
+  box-shadow: 0 0 0 1px rgba($codex-gold, 0.4);
+}
+
+@media screen and (max-width: 450px) {
+  html {
+    font-size: 16px;
+  }
+
+  .title-wrapper .fancy-title:not(.category-title)::first-letter,
+  #topic-title h1 a::first-letter {
+    font-size: 1.75em;
+  }
+}
