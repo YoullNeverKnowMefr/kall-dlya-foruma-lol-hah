@@ -166,6 +166,12 @@ body :where(
   background: transparent !important;
 }
 
+.topic-list-item.visited,
+.latest-topic-list-item.visited,
+.category-topic-link.visited {
+  background-color: #ffffff00 !important;
+}
+
 // -----------------------------------------------------------------------------
 // Список тем: карточки на тёмном пергаменте
 // -----------------------------------------------------------------------------
