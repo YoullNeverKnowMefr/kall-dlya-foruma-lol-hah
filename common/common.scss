@@ -133,6 +133,27 @@ body :where(
   }
 }
 
+.codex-topic-links {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-family: "Crimson Pro", Georgia, serif;
+  font-size: 0.95rem;
+  white-space: nowrap;
+
+  a {
+    color: $codex-body-text;
+    text-decoration: none;
+    border-bottom: 1px solid rgba(129, 101, 57, 0.45);
+
+    &:hover,
+    &:focus {
+      color: var(--header_primary);
+      border-bottom-color: rgba(196, 181, 160, 0.8);
+    }
+  }
+}
+
 // -----------------------------------------------------------------------------
 // Основная колонка с контентом
 // -----------------------------------------------------------------------------
@@ -519,5 +540,10 @@ a.search-icon[href="/search?expanded=true"] {
   .codex-header-links {
     font-size: 0.8rem;
     gap: 0.35rem;
+  }
+
+  .codex-topic-links {
+    font-size: 0.85rem;
+    gap: 0.4rem;
   }
 }

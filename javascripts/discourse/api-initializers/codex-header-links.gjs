@@ -1,6 +1,8 @@
 import { apiInitializer } from "discourse/lib/api";
 
 const LINKS_CONTAINER_CLASS = "codex-header-links";
+const TOPIC_LINKS_CLASS = "codex-topic-links";
+const CATEGORY_HINT_PREFIX = "Create topics here";
 
 const HEADER_LINKS = [
   { href: "https://discord.gg/P8rSwN4s", label: "Discord" },
@@ -9,17 +11,26 @@ const HEADER_LINKS = [
   { href: "https://www.google.com/maps", label: "Карта мира!" },
 ];
 
-function buildLinksContainer(documentRef) {
+const TOPIC_LINKS = [
+  { href: "/latest", label: "Latest" },
+  { href: "/new", label: "New" },
+  { href: "/unread", label: "Unread" },
+  { href: "/top", label: "Top" },
+];
+
+function buildLinksContainer(documentRef, links, className, isExternal = false) {
   const container = documentRef.createElement("nav");
-  container.className = LINKS_CONTAINER_CLASS;
+  container.className = className;
   container.setAttribute("aria-label", "External links");
 
-  HEADER_LINKS.forEach(({ href, label }) => {
+  links.forEach(({ href, label }) => {
     const link = documentRef.createElement("a");
     link.href = href;
     link.textContent = label;
-    link.target = "_blank";
-    link.rel = "noopener noreferrer";
+    if (isExternal) {
+      link.target = "_blank";
+      link.rel = "noopener noreferrer";
+    }
     container.appendChild(link);
   });
 
@@ -39,10 +50,37 @@ function ensureHeaderLinks() {
     return;
   }
 
-  logoWrapper.appendChild(buildLinksContainer(document));
+  logoWrapper.appendChild(
+    buildLinksContainer(document, HEADER_LINKS, LINKS_CONTAINER_CLASS, true)
+  );
+}
+
+function replaceCategoryHintWithTopicLinks() {
+  const hintSpan = Array.from(document.querySelectorAll(".category-description span"))
+    .find((node) => node.textContent?.trim().startsWith(CATEGORY_HINT_PREFIX));
+
+  if (!hintSpan) {
+    return;
+  }
+
+  const container = hintSpan.parentElement;
+
+  if (!container || container.querySelector(`.${TOPIC_LINKS_CLASS}`)) {
+    return;
+  }
+
+  hintSpan.remove();
+  container.appendChild(
+    buildLinksContainer(document, TOPIC_LINKS, TOPIC_LINKS_CLASS, false)
+  );
 }
 
 export default apiInitializer("1.8.0", (api) => {
-  api.onPageChange(() => ensureHeaderLinks());
-  queueMicrotask(() => ensureHeaderLinks());
+  const applyCodexEnhancements = () => {
+    ensureHeaderLinks();
+    replaceCategoryHintWithTopicLinks();
+  };
+
+  api.onPageChange(() => applyCodexEnhancements());
+  queueMicrotask(() => applyCodexEnhancements());
 });
