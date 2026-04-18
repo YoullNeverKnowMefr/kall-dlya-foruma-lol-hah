@@ -12,7 +12,7 @@ const HEADER_LINKS = [
 ];
 
 const TOPIC_LINKS = [
-  { href: "/latest", label: "Latest" },
+  { href: "https://forum.swall.space/t/about-the-general-category/3", label: "about-the-general-category" },
   { href: "/new", label: "New" },
   { href: "/unread", label: "Unread" },
   { href: "/top", label: "Top" },
