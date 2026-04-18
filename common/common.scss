@@ -10,6 +10,7 @@
 $codex-gold: #a6851f;
 $codex-gold-dim: rgba(166, 133, 31, 0.35);
 $codex-ink: #eadfce;
+$codex-body-text: rgb(129 101 57);
 
 // Полупрозрачные панели (модалки): тёмный пергамент
 @mixin parchment-panel {
@@ -41,7 +42,30 @@ html {
 body {
   background: transparent;
   font-family: "Crimson Pro", "Times New Roman", Times, serif;
-  color: var(--primary);
+  color: $codex-body-text;
+}
+
+// Базовый цвет для всего не-заголовочного текста
+body :where(
+    p,
+    span,
+    li,
+    td,
+    th,
+    label,
+    small,
+    strong,
+    em,
+    time,
+    .topic-list-data,
+    .age,
+    .badge-posts,
+    .cooked,
+    .cooked p,
+    .cooked li,
+    .cooked a
+  ) {
+  color: $codex-body-text;
 }
 
 // -----------------------------------------------------------------------------
@@ -76,6 +100,36 @@ body {
   .menu-panel .d-icon {
     color: var(--primary);
     opacity: 1;
+  }
+}
+
+// Ссылки справа от логотипа в шапке
+.d-header .title {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+}
+
+.codex-header-links {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-left: 0.35rem;
+  font-family: "Crimson Pro", Georgia, serif;
+  font-size: 0.9rem;
+  white-space: nowrap;
+
+  a {
+    color: $codex-body-text;
+    text-decoration: none;
+    border-bottom: 1px solid rgba(129, 101, 57, 0.45);
+    line-height: 1;
+
+    &:hover,
+    &:focus {
+      color: var(--header_primary);
+      border-bottom-color: rgba(196, 181, 160, 0.8);
+    }
   }
 }
 
@@ -442,10 +496,12 @@ mark,
   background: var(--highlight) !important;
   box-shadow: 0 0 0 1px rgba($codex-gold, 0.35);
 }
+
 // Скрыть кнопку "Open advanced search" (иконка лупы с href /search?expanded=true)
 a.search-icon[href="/search?expanded=true"] {
   display: none !important;
 }
+
 // -----------------------------------------------------------------------------
 // Узкий экран: чуть меньше литера и отключение fixed-фона (производительность)
 // -----------------------------------------------------------------------------
@@ -458,5 +514,10 @@ a.search-icon[href="/search?expanded=true"] {
   .title-wrapper .fancy-title:not(.category-title)::first-letter,
   #topic-title h1 a::first-letter {
     font-size: 1.75em;
+  }
+
+  .codex-header-links {
+    font-size: 0.8rem;
+    gap: 0.35rem;
   }
 }
