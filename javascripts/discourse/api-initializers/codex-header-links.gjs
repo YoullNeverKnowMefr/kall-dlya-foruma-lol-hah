@@ -5,6 +5,8 @@ const LINKS_CONTAINER_CLASS = "codex-header-links";
 const HEADER_LINKS = [
   { href: "https://discord.gg/P8rSwN4s", label: "Discord" },
   { href: "https://boosty.to/neueerde", label: "Boosty" },
+  { href: "https://forum.swall.space/", label: "Наш Сайт!" },
+  { href: "https://www.google.com/maps", label: "Карта мира!" },
 ];
 
 function buildLinksContainer(documentRef) {
