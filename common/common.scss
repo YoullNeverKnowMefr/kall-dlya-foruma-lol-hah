@@ -7,10 +7,10 @@
 @import url("https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Crimson+Pro:ital,wght@0,400;0,600;1,400&family=Uncial+Antiqua&display=swap");
 
 // Локальные оттенки (чуть темнее базовой палитры для каймы и акцентов)
-$codex-gold: #a6851f;
-$codex-gold-dim: rgba(166, 133, 31, 0.35);
+$codex-gold: #665215;
+$codex-gold-dim: rgba(139, 112, 31, 0.35);
 $codex-ink: #eadfce;
-$codex-body-text: rgb(129 101 57);
+$codex-body-text: rgb(85, 67, 39);
 
 // Полупрозрачные панели (модалки): тёмный пергамент
 @mixin parchment-panel {
@@ -57,6 +57,7 @@ body :where(
     strong,
     em,
     time,
+    title,
     .topic-list-data,
     .age,
     .badge-posts,
