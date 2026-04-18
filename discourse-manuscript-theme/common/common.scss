@@ -1,66 +1,69 @@
-// Codex — тема в духе средневекового манускрипта (Discourse)
-// Шрифты: заголовки — Cinzel; текст — Crimson Pro; акценты — Uncial Antiqua
-
 @import url("https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Crimson+Pro:ital,wght@0,400;0,600;1,400&family=Uncial+Antiqua&display=swap");
 
 $codex-gold: #c9a227;
-$codex-gold-dim: rgba(201, 162, 39, 0.35);
+$codex-gold-dim: rgba(201, 162, 39, 0.28);
 $codex-ink: #2a1810;
 
-@mixin parchment-bg {
+@mixin parchment-panel {
+  background-color: rgba(255, 252, 245, 0.88);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+// Фон страницы: миниатюра + светлый слой для читаемости текста
+html {
+  font-size: 17px;
+  min-height: 100%;
   background-color: var(--secondary);
   background-image:
     linear-gradient(
-      90deg,
-      rgba(139, 90, 43, 0.04) 0%,
-      transparent 8%,
-      transparent 92%,
-      rgba(139, 90, 43, 0.04) 100%
+      rgba(245, 236, 218, 0.88) 0%,
+      rgba(240, 228, 208, 0.9) 50%,
+      rgba(235, 222, 200, 0.92) 100%
     ),
-    repeating-linear-gradient(
-      0deg,
-      transparent,
-      transparent 2px,
-      rgba(74, 52, 28, 0.03) 2px,
-      rgba(74, 52, 28, 0.03) 3px
-    ),
-    radial-gradient(
-      ellipse 120% 80% at 50% 0%,
-      rgba(255, 248, 230, 0.9) 0%,
-      var(--secondary) 55%
-    );
-}
-
-html {
-  font-size: 17px;
+    url($manuscript_miniature);
+  background-repeat: no-repeat, no-repeat;
+  background-size: cover, cover;
+  background-position: center, center;
+  background-attachment: fixed, fixed;
 }
 
 body {
-  @include parchment-bg;
+  background: transparent;
   font-family: "Crimson Pro", "Times New Roman", Times, serif;
   color: var(--primary);
 }
 
-// Шапка — «кожаный» корешок с золотой каймой
+// Минималистичная шапка: плоская, лёгкое «стекло», без тяжёлой каймы
 .d-header {
   box-shadow: none;
-  border-bottom: 3px double $codex-gold;
-  background: linear-gradient(180deg, #2a1810 0%, var(--header_background) 45%, #120a06 100%);
-  min-height: 3.75em;
+  border-bottom: 1px solid rgba(42, 24, 16, 0.1);
+  background: rgba(255, 252, 245, 0.78);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  min-height: 3.1em;
 
   .title,
   .title a,
   .extra-info {
-    font-family: "Cinzel", serif;
-    letter-spacing: 0.04em;
+    font-family: "Crimson Pro", Georgia, serif;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    color: var(--primary);
   }
 
   .d-icon {
-    color: var(--header_primary);
+    color: var(--primary);
+    opacity: 0.72;
+  }
+
+  .icon:hover .d-icon {
+    opacity: 1;
   }
 
   .menu-panel .d-icon {
     color: var(--primary);
+    opacity: 1;
   }
 }
 
@@ -69,18 +72,17 @@ body {
   max-width: 1110px;
 }
 
-// Карточки списка тем — рамка как у миниатюры
 .topic-list {
   .topic-list-item {
-    border: 1px solid $codex-gold-dim;
-    border-radius: 2px;
+    border: 1px solid rgba(42, 24, 16, 0.08);
+    border-radius: 4px;
     margin-bottom: 6px;
-    background: rgba(255, 252, 245, 0.45);
-    box-shadow: inset 0 0 0 1px rgba(42, 24, 16, 0.06);
+    background: rgba(255, 252, 245, 0.9);
+    box-shadow: none;
 
     &:hover {
-      background: rgba(255, 250, 235, 0.75);
-      border-color: rgba($codex-gold, 0.55);
+      background: rgba(255, 250, 240, 0.96);
+      border-color: rgba(42, 24, 16, 0.12);
     }
   }
 
@@ -91,7 +93,6 @@ body {
   }
 }
 
-// Заголовок темы — инициал как «литера»
 .title-wrapper .fancy-title,
 #topic-title h1 a {
   font-family: "Cinzel", serif;
@@ -111,7 +112,6 @@ body {
   text-shadow: 1px 1px 0 rgba(42, 24, 16, 0.15);
 }
 
-// Тело поста — читаемая густая строка
 .cooked {
   font-family: "Crimson Pro", Georgia, serif;
   font-size: 1.05rem;
@@ -133,8 +133,8 @@ body {
   }
 
   blockquote {
-    border-left: 4px double var(--tertiary);
-    background: rgba(30, 74, 110, 0.06);
+    border-left: 3px solid var(--tertiary);
+    background: rgba(255, 252, 245, 0.65);
     padding: 0.5em 1em;
     font-style: italic;
   }
@@ -150,86 +150,103 @@ body {
     font-family: ui-monospace, "Cascadia Mono", Consolas, monospace;
     font-size: 0.92em;
     background: rgba(42, 24, 16, 0.06);
-    border: 1px solid rgba(42, 24, 16, 0.12);
+    border: 1px solid rgba(42, 24, 16, 0.1);
   }
 }
 
-// Навигация сверху списка
+// Минималистичное меню списков: без «таблеток», только текст и линия активного пункта
 .navigation-container {
   .select-kit.combo-box .select-kit-header {
-    border-radius: 2px;
-    border: 1px solid $codex-gold-dim;
-    background: rgba(255, 252, 245, 0.6);
+    border-radius: 4px;
+    border: 1px solid rgba(42, 24, 16, 0.1);
+    background: rgba(255, 252, 245, 0.75);
+    box-shadow: none;
+    font-family: "Crimson Pro", Georgia, serif;
+    font-size: 0.95rem;
   }
 
-  .nav-pills > li > a {
-    font-family: "Cinzel", serif;
-    font-size: 0.88rem;
-    border-radius: 2px;
+  .nav-pills {
+    gap: 0.15em;
 
-    &.active {
-      color: var(--tertiary);
-      background: rgba(255, 252, 245, 0.85);
-      border-bottom: 3px solid var(--tertiary);
-    }
+    > li > a {
+      font-family: "Crimson Pro", Georgia, serif;
+      font-size: 0.95rem;
+      font-weight: 500;
+      padding: 0.35em 0.5em;
+      margin-right: 0.35em;
+      border-radius: 0;
+      border-bottom: 2px solid transparent;
+      background: transparent;
+      color: rgba(42, 24, 16, 0.65);
 
-    &:hover {
-      color: var(--tertiary);
-      background: rgba(255, 252, 245, 0.55);
+      &.active {
+        color: var(--primary);
+        background: transparent;
+        border-bottom-color: var(--tertiary);
+      }
+
+      &:hover {
+        color: var(--primary);
+        background: rgba(255, 252, 245, 0.5);
+        border-bottom-color: rgba(30, 74, 110, 0.35);
+      }
     }
   }
 }
 
-// Кнопки (исключения по рекомендации Discourse)
 :not(.d-editor-button-bar) > .btn:not(.single-select-header):not(.modal-close),
 .topic-notifications-button > .select-kit > .btn {
-  font-family: "Cinzel", serif;
-  border-radius: 2px;
-  border: 2px solid rgba($codex-gold, 0.65);
-  background: linear-gradient(180deg, rgba(255, 252, 245, 0.95) 0%, rgba(242, 228, 200, 0.9) 100%);
+  font-family: "Crimson Pro", Georgia, serif;
+  font-weight: 500;
+  border-radius: 4px;
+  border: 1px solid rgba(42, 24, 16, 0.15);
+  background: rgba(255, 252, 245, 0.85);
   color: var(--primary);
+  box-shadow: none;
 
   .d-icon {
     color: var(--primary);
+    opacity: 0.85;
   }
 
   &:hover {
-    background: rgba(255, 250, 235, 0.98);
-    border-color: $codex-gold;
+    background: rgba(255, 250, 240, 0.95);
+    border-color: rgba(42, 24, 16, 0.22);
   }
 
   &.btn-primary {
-    background: linear-gradient(180deg, var(--tertiary) 0%, #163a52 100%);
-    color: var(--secondary);
-    border-color: rgba(30, 74, 110, 0.8);
+    background: var(--tertiary);
+    color: #f5f0e6;
+    border-color: rgba(30, 74, 110, 0.5);
 
     .d-icon {
-      color: var(--secondary);
+      color: #f5f0e6;
+      opacity: 1;
     }
 
     &:hover {
-      filter: brightness(1.05);
+      filter: brightness(1.06);
     }
   }
 }
 
-// Панели и модалки — тот же пергамент
 .menu-panel,
 .modal-inner-container {
-  @include parchment-bg;
-  border: 2px solid $codex-gold-dim;
+  @include parchment-panel;
+  border: 1px solid rgba(42, 24, 16, 0.1);
+  box-shadow: 0 8px 32px rgba(42, 24, 16, 0.08);
 }
 
-// Подсветка выделения поиска
 mark,
 .highlighted {
   background: var(--highlight) !important;
-  box-shadow: 0 0 0 1px rgba($codex-gold, 0.4);
+  box-shadow: 0 0 0 1px rgba($codex-gold, 0.25);
 }
 
 @media screen and (max-width: 450px) {
   html {
     font-size: 16px;
+    background-attachment: scroll, scroll;
   }
 
   .title-wrapper .fancy-title:not(.category-title)::first-letter,

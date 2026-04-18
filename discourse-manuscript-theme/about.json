@@ -2,7 +2,9 @@
   "name": "Codex — средневековый манускрипт",
   "about_url": "",
   "license_url": "",
-  "assets": {},
+  "assets": {
+    "manuscript_miniature": "assets/manuscript-miniature.png"
+  },
   "color_schemes": {
     "Codex": {
       "primary": "2a1810",
