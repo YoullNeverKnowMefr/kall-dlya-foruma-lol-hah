@@ -1,0 +1,256 @@
+@import url("https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Crimson+Pro:ital,wght@0,400;0,600;1,400&family=Uncial+Antiqua&display=swap");
+
+$codex-gold: #c9a227;
+$codex-gold-dim: rgba(201, 162, 39, 0.28);
+$codex-ink: #2a1810;
+
+@mixin parchment-panel {
+  background-color: rgba(255, 252, 245, 0.88);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+// Фон страницы: миниатюра + светлый слой для читаемости текста
+html {
+  font-size: 17px;
+  min-height: 100%;
+  background-color: var(--secondary);
+  background-image:
+    linear-gradient(
+      rgba(245, 236, 218, 0.88) 0%,
+      rgba(240, 228, 208, 0.9) 50%,
+      rgba(235, 222, 200, 0.92) 100%
+    ),
+    url($manuscript_miniature);
+  background-repeat: no-repeat, no-repeat;
+  background-size: cover, cover;
+  background-position: center, center;
+  background-attachment: fixed, fixed;
+}
+
+body {
+  background: transparent;
+  font-family: "Crimson Pro", "Times New Roman", Times, serif;
+  color: var(--primary);
+}
+
+// Минималистичная шапка: плоская, лёгкое «стекло», без тяжёлой каймы
+.d-header {
+  box-shadow: none;
+  border-bottom: 1px solid rgba(42, 24, 16, 0.1);
+  background: rgba(255, 252, 245, 0.78);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  min-height: 3.1em;
+
+  .title,
+  .title a,
+  .extra-info {
+    font-family: "Crimson Pro", Georgia, serif;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    color: var(--primary);
+  }
+
+  .d-icon {
+    color: var(--primary);
+    opacity: 0.72;
+  }
+
+  .icon:hover .d-icon {
+    opacity: 1;
+  }
+
+  .menu-panel .d-icon {
+    color: var(--primary);
+    opacity: 1;
+  }
+}
+
+#main-outlet {
+  padding-top: 1.25em;
+  max-width: 1110px;
+}
+
+.topic-list {
+  .topic-list-item {
+    border: 1px solid rgba(42, 24, 16, 0.08);
+    border-radius: 4px;
+    margin-bottom: 6px;
+    background: rgba(255, 252, 245, 0.9);
+    box-shadow: none;
+
+    &:hover {
+      background: rgba(255, 250, 240, 0.96);
+      border-color: rgba(42, 24, 16, 0.12);
+    }
+  }
+
+  .main-link .title {
+    font-family: "Cinzel", serif;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+  }
+}
+
+.title-wrapper .fancy-title,
+#topic-title h1 a {
+  font-family: "Cinzel", serif;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  line-height: 1.25;
+}
+
+.title-wrapper .fancy-title:not(.category-title)::first-letter,
+#topic-title h1 a::first-letter {
+  font-family: "Uncial Antiqua", cursive;
+  font-size: 2.15em;
+  float: left;
+  line-height: 0.82;
+  margin: 0.06em 0.12em 0 0;
+  color: var(--danger);
+  text-shadow: 1px 1px 0 rgba(42, 24, 16, 0.15);
+}
+
+.cooked {
+  font-family: "Crimson Pro", Georgia, serif;
+  font-size: 1.05rem;
+  line-height: 1.65;
+
+  p {
+    margin: 0.65em 0;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: "Cinzel", serif;
+    font-weight: 600;
+    color: $codex-ink;
+    border-bottom: 1px solid $codex-gold-dim;
+    padding-bottom: 0.2em;
+  }
+
+  blockquote {
+    border-left: 3px solid var(--tertiary);
+    background: rgba(255, 252, 245, 0.65);
+    padding: 0.5em 1em;
+    font-style: italic;
+  }
+
+  a {
+    text-decoration: underline;
+    text-decoration-color: rgba(30, 74, 110, 0.45);
+    text-underline-offset: 2px;
+  }
+
+  code,
+  pre {
+    font-family: ui-monospace, "Cascadia Mono", Consolas, monospace;
+    font-size: 0.92em;
+    background: rgba(42, 24, 16, 0.06);
+    border: 1px solid rgba(42, 24, 16, 0.1);
+  }
+}
+
+// Минималистичное меню списков: без «таблеток», только текст и линия активного пункта
+.navigation-container {
+  .select-kit.combo-box .select-kit-header {
+    border-radius: 4px;
+    border: 1px solid rgba(42, 24, 16, 0.1);
+    background: rgba(255, 252, 245, 0.75);
+    box-shadow: none;
+    font-family: "Crimson Pro", Georgia, serif;
+    font-size: 0.95rem;
+  }
+
+  .nav-pills {
+    gap: 0.15em;
+
+    > li > a {
+      font-family: "Crimson Pro", Georgia, serif;
+      font-size: 0.95rem;
+      font-weight: 500;
+      padding: 0.35em 0.5em;
+      margin-right: 0.35em;
+      border-radius: 0;
+      border-bottom: 2px solid transparent;
+      background: transparent;
+      color: rgba(42, 24, 16, 0.65);
+
+      &.active {
+        color: var(--primary);
+        background: transparent;
+        border-bottom-color: var(--tertiary);
+      }
+
+      &:hover {
+        color: var(--primary);
+        background: rgba(255, 252, 245, 0.5);
+        border-bottom-color: rgba(30, 74, 110, 0.35);
+      }
+    }
+  }
+}
+
+:not(.d-editor-button-bar) > .btn:not(.single-select-header):not(.modal-close),
+.topic-notifications-button > .select-kit > .btn {
+  font-family: "Crimson Pro", Georgia, serif;
+  font-weight: 500;
+  border-radius: 4px;
+  border: 1px solid rgba(42, 24, 16, 0.15);
+  background: rgba(255, 252, 245, 0.85);
+  color: var(--primary);
+  box-shadow: none;
+
+  .d-icon {
+    color: var(--primary);
+    opacity: 0.85;
+  }
+
+  &:hover {
+    background: rgba(255, 250, 240, 0.95);
+    border-color: rgba(42, 24, 16, 0.22);
+  }
+
+  &.btn-primary {
+    background: var(--tertiary);
+    color: #f5f0e6;
+    border-color: rgba(30, 74, 110, 0.5);
+
+    .d-icon {
+      color: #f5f0e6;
+      opacity: 1;
+    }
+
+    &:hover {
+      filter: brightness(1.06);
+    }
+  }
+}
+
+.menu-panel,
+.modal-inner-container {
+  @include parchment-panel;
+  border: 1px solid rgba(42, 24, 16, 0.1);
+  box-shadow: 0 8px 32px rgba(42, 24, 16, 0.08);
+}
+
+mark,
+.highlighted {
+  background: var(--highlight) !important;
+  box-shadow: 0 0 0 1px rgba($codex-gold, 0.25);
+}
+
+@media screen and (max-width: 450px) {
+  html {
+    font-size: 16px;
+    background-attachment: scroll, scroll;
+  }
+
+  .title-wrapper .fancy-title:not(.category-title)::first-letter,
+  #topic-title h1 a::first-letter {
+    font-size: 1.75em;
+  }
+}
