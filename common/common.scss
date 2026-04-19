@@ -162,6 +162,15 @@ body :where(
   max-width: 1110px;
 }
 
+// Вторая колонка в ряду (типично сайдбар «последние темы») — к правому краю контейнера
+#main-outlet .column + .column {
+  margin-inline-start: auto;
+}
+
+#main-outlet .column:has(.latest-topic-list) {
+  margin-inline-start: auto;
+}
+
 .latest-topic-list {
   background: transparent !important;
 }
