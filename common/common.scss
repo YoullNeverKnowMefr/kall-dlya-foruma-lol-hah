@@ -162,13 +162,38 @@ body :where(
   max-width: 1110px;
 }
 
-// Вторая колонка в ряду (типично сайдбар «последние темы») — к правому краю контейнера
-#main-outlet .column + .column {
+// Вторая колонка без «последних тем» — по-прежнему к правому краю ряда
+#main-outlet .column + .column:not(:has(.latest-topic-list)) {
   margin-inline-start: auto;
 }
 
+// Колонка с «последние темы» — закреплена у правого края экрана (под шапкой)
 #main-outlet .column:has(.latest-topic-list) {
-  margin-inline-start: auto;
+  position: fixed;
+  z-index: 100;
+  right: max(0.35rem, env(safe-area-inset-right));
+  top: max(4.25rem, calc(env(safe-area-inset-top, 0px) + 3.5rem));
+  bottom: max(0.5rem, env(safe-area-inset-bottom));
+  width: min(360px, calc(100vw - 0.75rem));
+  max-height: none;
+  box-sizing: border-box;
+  padding: 0.35rem 0 0.35rem 0.5rem;
+  overflow-x: hidden;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  margin-inline-start: 0;
+  background: rgba(32, 26, 20, 0.55);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 6px 0 0 6px;
+  border: 1px solid rgba(26, 15, 8, 0.35);
+  border-right: none;
+  box-shadow: -4px 0 24px rgba(0, 0, 0, 0.25);
+}
+
+// Чтобы основной контент не уезжал под плавающую колонку
+body:has(#main-outlet .column:has(.latest-topic-list)) #main-outlet {
+  padding-right: min(372px, calc(100vw - 1.5rem));
 }
 
 .latest-topic-list {
