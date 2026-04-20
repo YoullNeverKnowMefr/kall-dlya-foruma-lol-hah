@@ -13,8 +13,8 @@ const HEADER_LINKS = [
 
 const TOPIC_LINKS = [
   { href: "https://forum.swall.space/t/about-the-general-category/3", label: "about-the-general-category" },
-  { href: "/new", label: "New" },
-  { href: "/unread", label: "Unread" },
+  { href: "https://forum.swall.space/c/5-category/5", label: "New" },
+  { href: "https://forum.swall.space/c/5-category/5", label: "правила" },
   { href: "/top", label: "Top" },
 ];
 
