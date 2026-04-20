@@ -173,9 +173,8 @@ body :where(
   z-index: 100;
   right: max(0.35rem, env(safe-area-inset-right));
   top: max(4.25rem, calc(env(safe-area-inset-top, 0px) + 3.5rem));
-  bottom: auto;
-  height: min(50vh, calc(100vh - 5rem));
-  width: min(180px, calc(100vw - 0.75rem));
+  bottom: max(0.5rem, env(safe-area-inset-bottom));
+  width: min(240px, calc(100vw - 0.75rem));
   max-height: none;
   box-sizing: border-box;
   padding: 0.35rem 0 0.35rem 0.5rem;
@@ -185,7 +184,6 @@ body :where(
   margin-inline-start: 0;
   background: #ffffff00 !important;
   backdrop-filter: none;
-  -webkit-backdrop-filter: none;
   border-radius: 0;
   border: none;
   box-shadow: none;
