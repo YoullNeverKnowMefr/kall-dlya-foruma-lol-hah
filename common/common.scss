@@ -174,7 +174,7 @@ body :where(
   right: max(0.35rem, env(safe-area-inset-right));
   top: max(4.25rem, calc(env(safe-area-inset-top, 0px) + 3.5rem));
   bottom: max(0.5rem, env(safe-area-inset-bottom));
-  width: min(360px, calc(100vw - 0.75rem));
+  width: min(180px, calc(100vw - 0.75rem));
   max-height: none;
   box-sizing: border-box;
   padding: 0.35rem 0 0.35rem 0.5rem;
@@ -192,7 +192,7 @@ body :where(
 
 // Чтобы основной контент не уезжал под плавающую колонку
 body:has(#main-outlet .column:has(.latest-topic-list)) #main-outlet {
-  padding-right: min(372px, calc(100vw - 1.5rem));
+  padding-right: min(192px, calc(100vw - 1.5rem));
 }
 
 .latest-topic-list {
