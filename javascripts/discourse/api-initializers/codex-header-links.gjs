@@ -3,6 +3,7 @@ import { apiInitializer } from "discourse/lib/api";
 const LINKS_CONTAINER_CLASS = "codex-header-links";
 const TOPIC_LINKS_CLASS = "codex-topic-links";
 const CATEGORY_HINT_PREFIX = "Create topics here";
+const HIDDEN_CATEGORY_PATH = "/c/5-category/5";
 
 const HEADER_LINKS = [
   { href: "https://discord.gg/P8rSwN4s", label: "Discord" },
@@ -12,7 +13,7 @@ const HEADER_LINKS = [
 ];
 
 const TOPIC_LINKS = [
-  { href: "https://forum.swall.space/t/about-the-general-category/3", label: "about-the-general-category" },
+  { href: "https://forum.swall.space/t/about-the-general-category/3", label: "про катягориб" },
   { href: "https://forum.swall.space/c/5-category/5", label: "New" },
   { href: "https://forum.swall.space/c/5-category/5", label: "правила" },
   { href: "/top", label: "Top" },
@@ -75,10 +76,26 @@ function replaceCategoryHintWithTopicLinks() {
   );
 }
 
+function hideCategoryOnHomepage() {
+  if (window.location.pathname !== "/") {
+    return;
+  }
+
+  document
+    .querySelectorAll(`a[href="${HIDDEN_CATEGORY_PATH}"]`)
+    .forEach((link) => {
+      const categoryContainer = link.closest("tr, li, .category, .category-box, .category-list-item");
+      if (categoryContainer) {
+        categoryContainer.remove();
+      }
+    });
+}
+
 export default apiInitializer("1.8.0", (api) => {
   const applyCodexEnhancements = () => {
     ensureHeaderLinks();
     replaceCategoryHintWithTopicLinks();
+    hideCategoryOnHomepage();
   };
 
   api.onPageChange(() => applyCodexEnhancements());
