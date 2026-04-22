@@ -6,12 +6,7 @@ const CATEGORY_HINT_PREFIX = "Create topics here";
 
 const HEADER_LINKS = [
   { href: "https://discord.gg/P8rSwN4s", label: "Discord" },
-  {
-    href: "https://boosty.to/neueerde",
-    label: "Boosty",
-    imageSrc: "/assets/buttonboosty.png",
-    imageAlt: "",
-  },
+  { href: "https://boosty.to/neueerde", label: "Boosty" },
   { href: "https://forum.swall.space/", label: "Наш Сайт!" },
   { href: "https://www.google.com/maps", label: "Карта мира!" },
 ];
@@ -28,19 +23,10 @@ function buildLinksContainer(documentRef, links, className, isExternal = false) 
   container.className = className;
   container.setAttribute("aria-label", "External links");
 
-  links.forEach(({ href, label, imageSrc, imageAlt }) => {
+  links.forEach(({ href, label }) => {
     const link = documentRef.createElement("a");
     link.href = href;
-    link.setAttribute("aria-label", label);
-    if (imageSrc) {
-      const image = documentRef.createElement("img");
-      image.src = imageSrc;
-      image.alt = imageAlt ?? "";
-      image.loading = "lazy";
-      link.appendChild(image);
-    } else {
-      link.textContent = label;
-    }
+    link.textContent = label;
     if (isExternal) {
       link.target = "_blank";
       link.rel = "noopener noreferrer";

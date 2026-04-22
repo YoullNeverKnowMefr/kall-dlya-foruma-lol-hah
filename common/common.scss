@@ -173,9 +173,9 @@ body :where(
   z-index: 100;
   right: max(0.35rem, env(safe-area-inset-right));
   top: max(4.25rem, calc(env(safe-area-inset-top, 0px) + 3.5rem));
-  bottom: max(0.5rem, env(safe-area-inset-bottom));
-  width: min(240px, calc(100vw - 0.75rem));
-  max-height: none;
+  bottom: auto;
+  width: min(320px, calc(100vw - 0.75rem));
+  max-height: calc((100vh - max(4.25rem, calc(env(safe-area-inset-top, 0px) + 3.5rem)) - max(0.5rem, env(safe-area-inset-bottom))) / 1.5);
   box-sizing: border-box;
   padding: 0.35rem 0 0.35rem 0.5rem;
   overflow-x: hidden;
@@ -191,7 +191,7 @@ body :where(
 
 // Чтобы основной контент не уезжал под плавающую колонку
 body:has(#main-outlet .column:has(.latest-topic-list)) #main-outlet {
-  padding-right: min(192px, calc(100vw - 1.5rem));
+  padding-right: min(248px, calc(100vw - 1.5rem));
 }
 
 .latest-topic-list {
