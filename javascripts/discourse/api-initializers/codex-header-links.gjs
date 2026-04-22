@@ -10,7 +10,7 @@ const HEADER_LINKS = [
     href: "https://boosty.to/neueerde",
     label: "Boosty",
     imageSrc: "/assets/buttonboosty.png",
-    imageAlt: "Boosty",
+    imageAlt: "",
   },
   { href: "https://forum.swall.space/", label: "Наш Сайт!" },
   { href: "https://www.google.com/maps", label: "Карта мира!" },
@@ -31,10 +31,11 @@ function buildLinksContainer(documentRef, links, className, isExternal = false) 
   links.forEach(({ href, label, imageSrc, imageAlt }) => {
     const link = documentRef.createElement("a");
     link.href = href;
+    link.setAttribute("aria-label", label);
     if (imageSrc) {
       const image = documentRef.createElement("img");
       image.src = imageSrc;
-      image.alt = imageAlt || label;
+      image.alt = imageAlt ?? "";
       image.loading = "lazy";
       link.appendChild(image);
     } else {
