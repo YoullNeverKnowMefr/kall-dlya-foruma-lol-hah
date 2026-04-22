@@ -175,7 +175,7 @@ body :where(
   top: max(4.25rem, calc(env(safe-area-inset-top, 0px) + 3.5rem));
   bottom: auto;
   width: min(220px, calc(100vw - 0.75rem));
-  max-height: calc((100vh - max(4.25rem, calc(env(safe-area-inset-top, 0px) + 3.5rem)) - max(0.5rem, env(safe-area-inset-bottom))) / 1.5);
+  max-height: calc((125vh - max(4.25rem, calc(env(safe-area-inset-top, 0px) + 3.5rem)) - max(0.5rem, env(safe-area-inset-bottom))) / 1.5);
   box-sizing: border-box;
   padding: 0.35rem 0 0.35rem 0.5rem;
   overflow-x: hidden;
