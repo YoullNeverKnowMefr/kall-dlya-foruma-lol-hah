@@ -2,6 +2,7 @@ import { apiInitializer } from "discourse/lib/api";
 
 const LINKS_CONTAINER_CLASS = "codex-header-links";
 const TOPIC_LINKS_CLASS = "codex-topic-links";
+const MIKOR_BLOCK_CLASS = "codex-mikor-card";
 const CATEGORY_HINT_PREFIX = "Create topics here";
 const HIDDEN_CATEGORY_PATH = "/c/5-category/5";
 
@@ -91,11 +92,38 @@ function hideCategoryOnHomepage() {
     });
 }
 
+function ensureMikorCardOnHomepage() {
+  const existingCard = document.querySelector(`.${MIKOR_BLOCK_CLASS}`);
+  if (window.location.pathname !== "/") {
+    existingCard?.remove();
+    return;
+  }
+
+  if (existingCard) {
+    return;
+  }
+
+  const mainOutlet = document.querySelector("#main-outlet");
+  if (!mainOutlet) {
+    return;
+  }
+
+  const card = document.createElement("section");
+  card.className = MIKOR_BLOCK_CLASS;
+  card.innerHTML = `
+    <div class="codex-mikor-card__image" role="img" aria-label="mikor"></div>
+    <div class="codex-mikor-card__caption">mikor</div>
+  `;
+
+  mainOutlet.prepend(card);
+}
+
 export default apiInitializer("1.8.0", (api) => {
   const applyCodexEnhancements = () => {
     ensureHeaderLinks();
     replaceCategoryHintWithTopicLinks();
     hideCategoryOnHomepage();
+    ensureMikorCardOnHomepage();
   };
 
   api.onPageChange(() => applyCodexEnhancements());

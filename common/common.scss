@@ -162,6 +162,37 @@ body :where(
   max-width: 1110px;
 }
 
+.codex-mikor-card {
+  margin: 0.2rem 0 0.9rem;
+  padding: 0.9rem 0.8rem 0.75rem;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.45rem;
+  border: 1px solid rgba(166, 133, 31, 0.32);
+  background: rgba(45, 35, 26, 0.82);
+  border-radius: 8px;
+}
+
+.codex-mikor-card__image {
+  width: 84px;
+  height: 84px;
+  border-radius: 50%;
+  background-image: url($mikor_image);
+  background-size: cover;
+  background-position: center;
+  border: 1px solid rgba(196, 181, 160, 0.6);
+  box-shadow: 0 0 0 2px rgba(20, 15, 10, 0.4);
+}
+
+.codex-mikor-card__caption {
+  font-family: "Cinzel", serif;
+  font-size: 0.95rem;
+  letter-spacing: 0.06em;
+  text-transform: lowercase;
+  color: #f0e3d0;
+}
+
 // Вторая колонка без «последних тем» — по-прежнему к правому краю ряда
 #main-outlet .column + .column:not(:has(.latest-topic-list)) {
   margin-inline-start: auto;
