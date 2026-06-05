@@ -3,8 +3,7 @@
   "about_url": "",
   "license_url": "",
   "assets": {
-    "manuscript_miniature": "assets/manuscript-miniature.png",
-    "mikor_image": "assets/mikor.png"
+    "manuscript_miniature": "assets/manuscript-miniature.png"
   },
   "color_schemes": {
     "Codex": {
